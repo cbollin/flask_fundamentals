@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" media="screen" title="no title">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+    <title>Gold Game</title>
+</head>
+
+<body>
+    <table class="u-full-width">
+        <thead>
+            <tr>
+                <th>
+                    <h3>Area</h3></th>
+                <th>
+                    <h3>Gold</h3></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <h1>Total Gold: {{ session['total'] }}</h1>
+            <tr>
+                <form class='form' action="/process" method="post">
+                    <input type="hidden" name="building" value="farm">
+                    <td>
+                        <h3>Farm</h3></td>
+                    <td>
+                        <h3>10-20</h3></td>
+                    <td><input type="submit" value="Find Gold!"></td>
+                </form>
+            </tr>
+            <tr>
+                <form class='form' action="/process" method="post">
+                    <input type="hidden" name="building" value="cave">
+                    <td>
+                        <h3>Cave</h3></td>
+                    <td>
+                        <h3>5-10</h3></td>
+                    <td><input type="submit" value="Find Gold!"></td>
+                </form>
+            </tr>
+            <tr>
+                <form class='form' action="/process" method="post">
+                    <input type="hidden" name="building" value="house">
+                    <td>
+                        <h3>House</h3></td>
+                    <td>
+                        <h3>2-5</h3></td>
+                    <td><input type="submit" value="Find Gold!"></td>
+                </form>
+            </tr>
+            <tr>
+                <form class='form' action="/process" method="post">
+                    <input type="hidden" name="building" value="casino">
+                    <td>
+                        <h3>Casino</h3></td>
+                    <td>
+                        <h3>0-50</h3></td>
+                    <td><input type="submit" value="Find Gold!"></td>
+                </form>
+            </tr>
+            <tr><a href="/reset"><button type="submit" name="button">Reset</button></a></tr>
+        </tbody>
+    </table>
+    <h3>Activities</h3>
+    <textarea class="u-full-width">
+      {% for item in session['log'] %}
+        {{ item }}
+      {% endfor %}
+    </textarea>
+</body>
+
+</html>
