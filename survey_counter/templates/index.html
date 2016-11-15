@@ -5,14 +5,13 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" media="screen" title="no title">
     <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
-    <title>A template, for your thoughts</title>
+    <title>Some projects</title>
   </head>
   <body>
     <center>
 
-    <h1>Send me your info!</h1>
+    <h1>User Form with Session!</h1>
     <img src="{{ url_for('static', filename='img/proud.jpg')}}" alt="" />
-
     <form action="/users" method="post">
       Name: <input type="text" name="name">
       <select name="location">
@@ -27,11 +26,49 @@
       </select>
       Comment: <input type="text" name="comment">
       <input type="submit" value="create user">
-      <h3>Page Visit Counter</h3>
-      <h2>{{session['counter']}}</h2>
-      <a href="/double"><button type="button" name="button">Add +2 to Counter</button></a>
-      <a href="/reset"><button type="button" name="button">Reset</button></a>
     </form>
+
+    <p>________</p>
+
+    <h1>Page Visit Counter</h1>
+    <h2>{{session['counter']}}</h2>
+    <a href="/double"><button type="button" name="button">Add +2 to Counter</button></a>
+    <a href="/reset"><button type="button" name="button">Reset</button></a>
+
+    <p>________</p>
+
+
+    <h1>Great Number Game</h1>
+    <p>I am thinking of a number between 1 and 100</p>
+      {% if session['guessstatus'] ==  '' %}
+      <p>Take a guess!</p>
+      <form action="/takeguess" method="post">
+        <input type="number" name="guess">
+        <input type="submit" value="take a guess">
+      </form>
+
+      {% elif session['guessstatus'] == 'too low' %}
+      <form action="/takeguess" method="post">
+        <input type="number" name="guess">
+        <input type="submit" value="take a guess">
+      </form>
+      <p>Too low!</p>
+
+      {% elif session['guessstatus'] == 'too high' %}
+      <form action="/takeguess" method="post">
+        <input type="number" name="guess">
+        <input type="submit" value="take a guess">
+      </form>
+      <p>Too high!</p>
+
+      {% elif session['guessstatus'] == 'correct' %}
+      <p>Correct!</p>
+      <a href="/"><button type="button" name="button">Play Again!</button></a>
+      {% endif %}
+
+    <p>________</p>
+
+
   </center>
   </body>
 </html>
