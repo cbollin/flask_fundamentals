@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>I'm weird</h1>
+    <img src="{{ url_for('static', filename='img/scared.jpg')}}" alt="" />
+
+    <form action="/users" method="post">
+      Name: <input type="text" name="name">
+      Email: <input type="text" name="email">
+      <input type="submit" value="create user">
+
+    </form>
+ </body>
+</html>
