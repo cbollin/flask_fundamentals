@@ -71,6 +71,20 @@
         {{ item }}
       {% endfor %}
     </textarea>
+
+    <h1>A bit of validation for good measure</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages%}
+        <p>{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <form action="/validate" method="post">
+      Name: <input type="text" name="fname">
+      <input type="submit" value="Submit">
+    </form>
+
 </body>
 
 </html>

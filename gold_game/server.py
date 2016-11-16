@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 import random
 import time
 import datetime
@@ -40,6 +40,14 @@ def process():
     session['log'].append("You earned {} gold from the {} at {}".format(session['gold'], session['name'], st))
     session['log'].reverse()
 
+    return redirect('/')
+
+@app.route('/validate', methods=['POST'])
+def validate():
+    if len(request.form['fname']) < 1:
+        flash("Name is too short!")
+    else:
+        flash("You shall be known as {}".format(request.form['fname']))
     return redirect('/')
 
 @app.route('/reset')

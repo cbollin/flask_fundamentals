@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for("static", filename="style.css")}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" media="screen" title="no title">
     <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
     <title>Some projects</title>
@@ -14,6 +14,8 @@
     <img src="{{ url_for('static', filename='img/proud.jpg')}}" alt="" />
     <form action="/users" method="post">
       Name: <input type="text" name="name">
+      Password: <input type="password" name="password">
+      Password Confirm: <input type="password" name="password_confirm">
       <select name="location">
         <option value="Seattle">Seattle</option>
         <option value="KC">KC</option>
@@ -25,13 +27,22 @@
         <option value="C#">C#</option>
       </select>
       Comment: <input type="text" name="comment">
+      Email: <input type="email" name="email">
       <input type="submit" value="create user">
     </form>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages%}
+        <p>{{message}}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 
     <p>________</p>
 
     <h1>Page Visit Counter</h1>
-    <h2>{{session['counter']}}</h2>
+    <h2>{{session["counter"]}}</h2>
     <a href="/double"><button type="button" name="button">Add +2 to Counter</button></a>
     <a href="/reset"><button type="button" name="button">Reset</button></a>
 
@@ -40,28 +51,28 @@
 
     <h1>Great Number Game</h1>
     <p>I am thinking of a number between 1 and 100</p>
-      {% if session['guessstatus'] ==  '' %}
+      {% if session["guessstatus"] ==  "" %}
       <p>Take a guess!</p>
       <form action="/takeguess" method="post">
         <input type="number" name="guess">
         <input type="submit" value="take a guess">
       </form>
 
-      {% elif session['guessstatus'] == 'too low' %}
+      {% elif session["guessstatus"] == "too low" %}
       <form action="/takeguess" method="post">
         <input type="number" name="guess">
         <input type="submit" value="take a guess">
       </form>
       <p>Too low!</p>
 
-      {% elif session['guessstatus'] == 'too high' %}
+      {% elif session["guessstatus"] == "too high" %}
       <form action="/takeguess" method="post">
         <input type="number" name="guess">
         <input type="submit" value="take a guess">
       </form>
       <p>Too high!</p>
 
-      {% elif session['guessstatus'] == 'correct' %}
+      {% elif session["guessstatus"] == "correct" %}
       <p>Correct!</p>
       <a href="/"><button type="button" name="button">Play Again!</button></a>
       {% endif %}
