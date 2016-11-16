@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" media="screen" title="no title">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+  </head>
+  <body>
+    {% if name == 1: %}
+    <img src="{{ url_for('static', filename='img/1.jpg')}}" alt="" />
+    {% elif name == 2: %}
+    <img src="{{ url_for('static', filename='img/2.jpg')}}" alt="" />
+    {% elif name == 3: %}
+    <img src="{{ url_for('static', filename='img/3.jpg')}}" alt="" />
+    {% elif name == 4: %}
+    <img src="{{ url_for('static', filename='img/4.jpg')}}" alt="" />
+    {% elif name == 5: %}
+    <img src="{{ url_for('static', filename='img/5.png')}}" alt="" />
+    {% else: %}
+    <img src="{{ url_for('static', filename='img/6.jpg')}}" alt="" />
+    {% endif %}
+  </body>
+</html>

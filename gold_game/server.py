@@ -7,9 +7,9 @@ app.secret_key = 'TopSecretMate'
 
 @app.route('/')
 def index():
-    if len(session['log']) == 0:
+    if 'log' not in session:
         session['log'] = []
-    if session['total'] <= 0:
+    if 'total' not in session:
         session['total'] = 0
     return render_template('index.html')
 
