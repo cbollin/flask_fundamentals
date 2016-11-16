@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" media="screen" title="no title">
+  </head>
+  <body>
+    <center>
+      <h1>These are all the users!</h1>
+      <p>Welcome {{session['user']['first_name']}}</p>
+      {% for user in users: %}
+         <p>ID: {{ user['id'] }}</p>``
+         <p>First Name: {{ user['first_name'] }}</p>
+         <p>Last Name: {{ user['last_name'] }}</p>
+         <p>Occupation: {{ user['email'] }}</p>
+         <p>Created at: {{user['created_at']}}</p>
+         <p>Updated at: {{user['updated_at']}}</p>
+      {% endfor %}
+  </center>
+  </body>
+</html>
