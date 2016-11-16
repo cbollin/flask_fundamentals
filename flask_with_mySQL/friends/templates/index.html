@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" media="screen" title="no title">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+  </head>
+  <title>Friends</title>
+</head>
+<body>
+  <center>
+  <h2>Add a Friend</h2>
+  <form action='/friends' method='POST'>
+    <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+    <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+    <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+    <input type="submit" value="Add">
+  </form>
+  <h1>These are all my friends!</h1>
+  {% for friend in all_friends: %}
+     <p>ID: {{ friend['id'] }}</p>
+     <p>First Name: {{ friend['first_name'] }}</p>
+     <p>Last Name: {{ friend['last_name'] }}</p>
+     <p>Occupation: {{ friend['occupation'] }}</p>
+     <p>Created at: {{friend['created_at'].strftime("%m-%d-%Y")}}</p>
+     <p>Updated at: {{friend['updated_at'].strftime("%m-%d-%Y")}}</p>
+     <form action="/remove_friend/{{friend['id']}}" method="POST">
+       <button type="submit" name="delete">Remove Friend</button>
+     </form>
+     <form action="/friends/{{friend['id']}}">
+       <button type="submit" name="show">Show Friend</button>
+     </form>
+
+  {% endfor %}
+</center>
+</body>
+</html>

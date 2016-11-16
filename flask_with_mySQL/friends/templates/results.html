@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" media="screen" title="no title">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js')}}"></script>
+  </head>
+  <body>
+    <center>
+      <p>ID: {{ friend['id'] }}</p>
+      <p>First Name: {{ friend['first_name'] }}</p>
+      <p>Last Name: {{ friend['last_name'] }}</p>
+      <p>Occupation: {{ friend['occupation'] }}</p>
+      <form action='/update_friend/{{friend["id"]}}' method='POST'>
+        <label for="first_name">First Name:<input type="text" name="first_name" id="first_name" value="{{friend['first_name']}}"></label>
+        <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name" value="{{friend['last_name']}}"></label>
+        <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation" value="{{friend['occupation']}}"></label>
+        <input type="submit" value="update">
+      </form>
+  </center>
+  </body>
+</html>
